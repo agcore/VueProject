@@ -12,6 +12,8 @@
         :key="person.id" 
         :person="person"
         @editSayings="updateSayings"
+        @removeProfile="deleteProfile"
+        @removeSaying="deleteSaying"
         />
 
    </v-layout>
@@ -71,6 +73,16 @@ name:"Container",
       {
           var foundIndex = this.apiData.findIndex(x => x.id == item.personid);
           this.apiData[foundIndex].sayings[item.index] = item.data
+      },
+      deleteProfile:function(index)
+      {
+        this.apiData = this.apiData.filter(function( obj ) {
+          return obj.id !== index;
+        });
+      },
+      deleteSaying: function(data){
+         var foundIndex = this.apiData.findIndex(x => x.id == data.id);
+        this.apiData[foundIndex].sayings.splice(data.index,1)
       }
   }
 }
