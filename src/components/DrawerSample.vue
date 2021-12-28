@@ -77,6 +77,7 @@ methods:{
       data :this.sayingText,
       index: this.postion
     })
+    this.sayingText = ""
   }
 }
 
