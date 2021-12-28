@@ -6,6 +6,7 @@
       temporary
       right
       width="25%"
+      v-click-outside="reset"
     >
   <v-list
         
@@ -77,6 +78,10 @@ methods:{
       data :this.sayingText,
       index: this.postion
     })
+  },
+  rest: function()
+  {
+    this.editedSaying = ""
   }
 }
 
