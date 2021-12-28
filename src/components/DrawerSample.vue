@@ -13,26 +13,14 @@
       >
           <v-list-item>
                       <v-text-field
-            label="Outlined"
+            label="Saying"
             outlined
+            v-model="sayingText"
           ></v-text-field>
           </v-list-item>
-
           <v-list-item>
-                                  <v-text-field
-            label="DrawerSample"
-            outlined
-          ></v-text-field>
+            <v-btn block dark @click="saveSaying">Save</v-btn>
           </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
-          </v-list-item>
-
       </v-list>
 
     </v-navigation-drawer>
@@ -43,7 +31,7 @@
 <script>
 export default {
 name: "DrawerSample",
-props : ["drawer"],
+props : ["drawer","textData","postion"],
 model: {
   prop:'drawer',
   event: 'drawerChange'
@@ -51,6 +39,7 @@ model: {
 data: function()
 {
   return{
+    editedSaying:""
   }
 },
 
@@ -64,6 +53,30 @@ computed : {
     {
       this.$emit('drawerChange',value);
     }
+  },
+  sayingText : {
+    get: function(){
+      if (this.editedSaying)
+      {
+        return this.editedSaying
+      }
+      else{
+        return this.textData
+      }
+    },
+    set:function(newVal)
+    {
+      this.editedSaying = newVal
+    }
+  }
+},
+methods:{
+  saveSaying: function()
+  {
+    this.$emit('saveSaying',{
+      data :this.sayingText,
+      index: this.postion
+    })
   }
 }
 

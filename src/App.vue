@@ -8,7 +8,7 @@
     </v-main> -->
 
 
-<div>
+<v-main>
 
           <v-app-bar color="deep-purple" dark>
             <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
@@ -32,11 +32,8 @@
               </v-list-item-group>
             </v-list>
           </v-navigation-drawer>
-                <HelloWorld v-model="drawer1" />
-      <DrawerSample v-model="drawer2"/>
-      <v-btn @click="drawer1 = !drawer1"> Drawer 1 </v-btn>
-      <v-btn @click="drawer2 = !drawer2"> Drawer 2 </v-btn>
-</div>
+        <Container/>
+</v-main>
 
 
 
@@ -44,24 +41,21 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-import DrawerSample from './components/DrawerSample';
+
+import Container from './components/Container.vue';
 
 export default {
   name: 'App',
   data: function()
   {
       return{
-        drawer:false,
-        drawer1:false,
-        drawer2:false,
+        drawer:false,        
         group: null
       }
   },
 
   components: {
-    HelloWorld,
-    DrawerSample
+    Container
   },
 };
 </script>
