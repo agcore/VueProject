@@ -11,8 +11,16 @@
       contain
     ></v-img>
 
-    <v-card-title>
+    <v-card-title d-flex>
       {{this.person.name.first}} {{this.person.name.middle}} {{this.person.name.last}} 
+      
+      <v-spacer></v-spacer>
+            <v-btn
+        icon
+        @click="deleteProfile(person.id)"
+      >
+        <v-icon >mdi-delete</v-icon>
+      </v-btn>
     </v-card-title>
 
     <v-card-subtitle>
@@ -48,12 +56,22 @@
                     outlined
                     small
                     fab
-                    color="indigo"
                     x-small
                     @click="editSayings(index)"
                     >
                         <v-icon x-small>mdi-pencil</v-icon>
-                    </v-btn>
+                    </v-btn >
+                    <v-btn
+                    outlined
+                    small
+                    fab
+                    color="indigo"
+                    x-small
+                     @click="deleteSaying(index)"> 
+                        <v-icon>
+                          mdi-delete
+                        </v-icon>
+                      </v-btn>
                 </li>
         </ol>
         </v-card-text>
@@ -96,8 +114,21 @@ export default {
             item.personid = this.person.id
             this.$emit("editSayings",item)
             console.log(item)
+        },
+        deleteProfile: function(id)
+        {
+          this.$emit('removeProfile',id)
+        },
+        deleteSaying: function(index)
+        {
+          this.$emit("removeSaying",{
+            index: index,
+            id: this.person.id
+          });
         }
-    }
+      }
+        
+    
 
 }
 </script>
