@@ -79,7 +79,7 @@ methods:{
       index: this.postion
     })
   },
-  rest: function()
+  reset:function()
   {
     this.editedSaying = ""
   }
